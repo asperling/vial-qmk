@@ -223,7 +223,9 @@ bool oled_task_user(void) {
     }
     return false;
 }
+#endif // OLED_ENABLE
 
+// Process custom keycodes
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   // Debugging or logging key presses
   #ifdef OLED_ENABLE
@@ -235,12 +237,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case M_BKTK:
       if (record->event.pressed) {
-        SEND_STRING("` ");
+        tap_code(KC_GRV);
+        tap_code(KC_SPC);
       }
       return false;
     case M_TILD:
       if (record->event.pressed) {
-        SEND_STRING(SS_LSFT("`") " ");
+        tap_code(LSFT(KC_GRV));
+        tap_code(KC_SPC);
       }
       return false;
     case M_CARET:
@@ -262,4 +266,3 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
   return true;
 }
-#endif // OLED_ENABLE
