@@ -225,6 +225,38 @@ bool oled_task_user(void) {
 }
 #endif // OLED_ENABLE
 
+#ifdef RGB_MATRIX_ENABLE
+layer_state_t layer_state_set_user(layer_state_t state) {
+    switch (get_highest_layer(state)) {
+        case 0:
+            rgb_matrix_sethsv(HSV_RED);     // Base layer = rot
+            break;
+        case 1:
+            rgb_matrix_sethsv(HSV_GREEN);   // Layer 1 = grün
+            break;
+        case 2:
+            rgb_matrix_sethsv(HSV_BLUE);    // Layer 2 = blau
+            break;
+        case 3:
+            rgb_matrix_sethsv(HSV_YELLOW);  // Layer 3 = gelb
+            break;
+        case 4:
+            rgb_matrix_sethsv(HSV_CYAN);    // Layer 4 = cyan
+            break;
+        case 5:
+            rgb_matrix_sethsv(HSV_MAGENTA); // Layer 5 = magenta
+            break;
+        case 6:
+            rgb_matrix_sethsv(HSV_WHITE);   // Layer 6 = weiß
+            break;
+        default:
+            rgb_matrix_sethsv(HSV_OFF);
+            break;
+    }
+    return state;
+}
+#endif
+
 // Process custom keycodes
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   // Debugging or logging key presses

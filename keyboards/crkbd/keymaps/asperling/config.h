@@ -52,4 +52,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #    define RGBLIGHT_VAL_STEP  17
 #endif
 
-#define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
+#ifdef RGB_MATRIX_ENABLE
+#    define RGB_MATRIX_LED_COUNT 46
+#    define RGB_MATRIX_SPLIT \
+        { 23, 23 }
+#    define RGB_MATRIX_MAXIMUM_BRIGHTNESS 120
+#    define RGB_MATRIX_FRAMEBUFFER_EFFECTS
+#    define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_SOLID_COLOR
+
+#    define RGB_DISABLE_TIMEOUT 0
+#    define RGB_MATRIX_MAXIMUM_BRIGHTNESS 120
+#endif
