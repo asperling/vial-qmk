@@ -226,31 +226,50 @@ bool oled_task_user(void) {
 #endif // OLED_ENABLE
 
 #ifdef RGB_MATRIX_ENABLE
+void keyboard_post_init_user(void) {
+    rgb_matrix_set_speed_noeeprom(20);
+    rgb_matrix_mode_noeeprom(RGB_MATRIX_CYCLE_ALL);
+}
+
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {
         case 0:
-            rgb_matrix_sethsv(HSV_RED);     // Base layer = rot
+            rgb_matrix_sethsv_noeeprom(HSV_RED);
+            rgb_matrix_mode_noeeprom(RGB_MATRIX_CYCLE_ALL);
+            rgb_matrix_set_speed_noeeprom(20);
             break;
         case 1:
-            rgb_matrix_sethsv(HSV_GREEN);   // Layer 1 = grün
+            rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
+            rgb_matrix_sethsv_noeeprom(HSV_YELLOW);
             break;
         case 2:
-            rgb_matrix_sethsv(HSV_BLUE);    // Layer 2 = blau
+            rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
+            rgb_matrix_sethsv_noeeprom(HSV_BLUE);
             break;
         case 3:
-            rgb_matrix_sethsv(HSV_YELLOW);  // Layer 3 = gelb
+            rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
+            rgb_matrix_sethsv_noeeprom(HSV_CYAN);
             break;
         case 4:
-            rgb_matrix_sethsv(HSV_CYAN);    // Layer 4 = cyan
+            rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
+            rgb_matrix_sethsv_noeeprom(HSV_WHITE);
             break;
         case 5:
-            rgb_matrix_sethsv(HSV_MAGENTA); // Layer 5 = magenta
+            rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
+            rgb_matrix_sethsv_noeeprom(HSV_MAGENTA);
             break;
         case 6:
-            rgb_matrix_sethsv(HSV_WHITE);   // Layer 6 = weiß
+            rgb_matrix_mode_noeeprom(RGB_MATRIX_CYCLE_LEFT_RIGHT);
+            rgb_matrix_set_speed_noeeprom(40);
+            break;
+        case 7:
+            rgb_matrix_sethsv_noeeprom(HSV_RED);
+            rgb_matrix_mode_noeeprom(RGB_MATRIX_BREATHING);
+            rgb_matrix_set_speed_noeeprom(80);
             break;
         default:
-            rgb_matrix_sethsv(HSV_OFF);
+            rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
+            rgb_matrix_sethsv_noeeprom(HSV_OFF);
             break;
     }
     return state;

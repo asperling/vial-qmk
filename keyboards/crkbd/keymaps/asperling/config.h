@@ -39,6 +39,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define EE_HANDS
 
 #define USE_SERIAL_PD2
+
 #ifdef RGBLIGHT_ENABLE
 #    undef RGBLIGHT_LED_COUNT
 #    define RGBLIGHT_ANIMATIONS
@@ -58,8 +59,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         { 23, 23 }
 #    define RGB_MATRIX_MAXIMUM_BRIGHTNESS 120
 #    define RGB_MATRIX_FRAMEBUFFER_EFFECTS
+#    define RGB_MATRIX_LED_PROCESS_LIMIT 0
+#    define RGB_MATRIX_LED_FLUSH_LIMIT 32
 #    define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_SOLID_COLOR
 
-#    define RGB_DISABLE_TIMEOUT 0
-#    define RGB_MATRIX_MAXIMUM_BRIGHTNESS 120
+#    define ENABLE_RGB_MATRIX_ALPHAS_MODS
+#    define ENABLE_RGB_MATRIX_BREATHING
+#    define ENABLE_RGB_MATRIX_RAINBOW_MOVING_CHEVRON
+#    define ENABLE_RGB_MATRIX_CYCLE_ALL
+#    define ENABLE_RGB_MATRIX_CYCLE_LEFT_RIGHT
+#    define ENABLE_RGB_MATRIX_PIXEL_FLOW
 #endif
